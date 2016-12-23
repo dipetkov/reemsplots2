@@ -1,0 +1,46 @@
+---
+title: "Sample and plot Voronoi diagrams"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sample and plot Voronoi diagrams}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo = TRUE}
+# Change the eval option to TRUE to show the plots
+knitr::opts_chunk$set(warning = TRUE, message = FALSE, collapse = TRUE, 
+                      comment = "#>", out.width = "75%", dpi = 600,
+                      fig.asp = 1 / 1.6, fig.width = 5, fig.retina = NULL,
+                      echo = TRUE, eval = FALSE)
+```
+
+Draw a series of Voronoi diagrams sampled from posterior distribution of the EEMS rate parameters: the effective migration rates (m) and the effective diversity rates (q).
+
+```{r }
+library("reemsplots2")
+library("ggplot2")
+
+# Use the provided example or supply the path to your own EEMS run
+mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+num_draws <- 3
+
+plots <- plot_voronoi_tiles(mcmcpath, longlat = TRUE, num_draws = num_draws)
+names(plots)
+```
+
+## Sample the effective migration posterior
+
+```{r }
+for (i in seq_len(num_draws)) {
+  print(plots[[paste0("mtiles", i)]])
+}
+```
+
+### Sample the effective diversity posterior
+
+```{r }
+for (i in seq_len(num_draws)) {
+  print(plots[[paste0("qtiles", i)]])
+}
+```

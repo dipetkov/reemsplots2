@@ -1,0 +1,65 @@
+---
+title: "Plot the population grid"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plot the population grid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo = TRUE}
+# Change the eval option to TRUE to show the plots
+knitr::opts_chunk$set(warning = TRUE, message = FALSE, collapse = TRUE, 
+                      comment = "#>", out.width = "75%", dpi = 600,
+                      fig.asp = 1 / 1.6, fig.width = 5, fig.retina = NULL,
+                      echo = TRUE, eval = FALSE)
+```
+
+### Case 1: The population grid is connected
+
+Plot the constructed population grid and, optionally, the initial sampling locations.
+
+```{r EEMS-connected-grid}
+library("reemsplots2")
+library("ggplot2")
+
+mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+longlat <- TRUE
+
+plots <- plot_population_grid(mcmcpath, longlat)
+names(plots)
+
+plots$popgrid
+```
+
+```{r EEMS-sampling-coords}
+# In this case the datapath is the same as the mcmcpath
+# because all package data is in the "extdata" folder
+datapath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+
+# Load the sampling coordinates
+coord <- read.table(paste0(datapath, ".coord"), header = FALSE)
+# Name the columns appropriately
+if (longlat) {
+  colnames(coord) <- c("long", "lat")
+} else {
+  colnames(coord) <- c("lat", "long")
+}
+
+plots$popgrid + 
+  geom_point(data = coord, aes(x = long, y = lat), shape = 1)
+```
+
+### Case 2: The population grid is not connected
+
+Unlike the other plotting functions, we can use `plot_population_grid` even if EEMS throws the following error:
+
+```
+The population grid is not connected.
+```
+
+```{r EEMS-unconnected-grid}
+mcmcpath <- system.file("extdata", "EEMS-popgrid", package = "reemsplots2")
+plots <- plot_population_grid(mcmcpath, longlat = FALSE)
+plots$popgrid
+```

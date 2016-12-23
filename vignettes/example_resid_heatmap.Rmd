@@ -1,0 +1,33 @@
+---
+title: "Plot the residual heatmap"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plot the residual heatmap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo = TRUE}
+# Change the eval option to TRUE to show the plots
+knitr::opts_chunk$set(warning = TRUE, message = FALSE, collapse = TRUE, 
+                      comment = "#>", out.width = "75%", dpi = 600,
+                      fig.asp = 1 / 1.6, fig.width = 5, fig.retina = NULL,
+                      echo = TRUE, eval = FALSE)
+```
+
+Plot a heatmap of the residual pairwise dissimilarities `|observed - fitted|`.
+
+```{r }
+library("reemsplots2")
+library("ggplot2")
+
+# Use the provided example or supply the path to your own EEMS run
+extdata <- system.file("extdata", package = "reemsplots2")
+datapath <- file.path(extdata, "EEMS-barrier")
+mcmcpath <- file.path(extdata, "EEMS-barrier")
+
+plots <- plot_resid_heatmap(datapath, mcmcpath, hm_colors = c("gray99", "red"))
+names(plots)
+
+plots$residhm
+```

@@ -1,0 +1,143 @@
+---
+title: "Generate EEMS plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Generate EEMS plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, echo = TRUE}
+# Change the eval option to TRUE to show the plots
+knitr::opts_chunk$set(warning = TRUE, message = FALSE, collapse = TRUE, 
+                      comment = "#>", out.width = "75%", dpi = 600,
+                      fig.asp = 1 / 1.6, fig.width = 5, fig.retina = NULL,
+                      echo = TRUE, eval = FALSE)
+```
+
+Produce a set of figures to visualize the results of analyzing geo-referenced genetic data with EEMS as well as to evaluate the EEMS model fit.
+
+```{r }
+library("reemsplots2")
+library("ggplot2")      # Modify the default plots
+library("rworldmap")    # Add a geographic map
+library("broom")        # Required for the map
+library("mapproj")      # Change the projection
+library("RColorBrewer") # Change the color scheme
+
+mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+plots <- make_eems_plots(mcmcpath, longlat = TRUE)
+names(plots)
+```
+
+```{r EEMS-example-default-mrates01}
+plots$mrates01
+```
+
+```{r EEMS-example-default-mrates02}
+plots$mrates02
+```
+
+```{r EEMS-example-default-qrates01}
+plots$qrates01
+```
+
+```{r EEMS-example-default-qrates02}
+plots$qrates02
+```
+
+```{r EEMS-example-default-rdist01, fig.asp = 1}
+plots$rdist01
+```
+
+```{r EEMS-example-default-rdist02, fig.asp = 1}
+plots$rdist02
+```
+
+```{r EEMS-example-default-rdist03, fig.asp = 1}
+plots$rdist03
+```
+
+```{r EEMS-example-default-pilogl01}
+plots$pilogl01
+```
+
+### Flip the x and y axis
+
+Assume that the x coordinate is the latitude and the y coordinate is the longitude.
+
+```{r EEMS-example-axes-flipped}
+plots <- make_eems_plots(mcmcpath, longlat = FALSE)
+plots$mrates01
+```
+
+### Change the color palette
+
+Use a divergent Red to Blue color scheme from the RColorBrewer package instead of the default DarkOrange to Blue color scheme.
+
+```{r EEMS-example-color-palette}
+plots <- make_eems_plots(mcmcpath, longlat = TRUE,
+                         eems_colors = brewer.pal(11, "RdBu"))
+plots$mrates01
+```
+
+### Change the color scale
+
+The default color scale is [-2.5, +2.5] for migration rates and [-0.1, 0.1] for diversity rates.
+
+```{r EEMS-example-new-colorscale}
+plots <- make_eems_plots(mcmcpath, longlat = TRUE,
+                         m_colscale = c(-3, 3),
+                         q_colscale = c(-0.3, +0.3))
+plots$mrates01
+plots$qrates01
+```
+
+### Add the population grid and sampled demes
+
+```{r EEMS-example-population-grid}
+plots <- make_eems_plots(mcmcpath, longlat = TRUE,
+                         add_grid = TRUE, add_demes = TRUE)
+plots$mrates01
+```
+
+### Add the original sampling locations to the contour plot
+
+```{r EEMS-example-sampling-locations}
+# In this case the datapath is the same as the mcmcpath
+# because all package data is in the "extdata" folder
+datapath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+
+# Load the sampling coordinates
+coord <- read.table(paste0(datapath, ".coord"), header = FALSE)
+# Name the columns appropriately
+colnames(coord) <- c("long", "lat")
+
+plots <- make_eems_plots(mcmcpath, longlat = TRUE)
+plots$mrates01 + 
+  geom_point(data = coord, aes(x = long, y = lat), shape = 1)
+```
+
+### Add a high-resolution geographic map
+
+```{r EEMS-example-geographic map}
+# "Tidy" the map so that each polygon is a "group"
+map <- rworldmap::getMap(resolution = "high")
+map <- broom::tidy(map)
+
+plots <- make_eems_plots(mcmcpath, longlat = TRUE)
+plots$mrates01 + 
+  geom_path(data = map, aes(x = long, y = lat, group = group),
+            color = "#888888", size = 0.5) +
+  coord_quickmap()
+```
+
+### Use a different projection
+
+```{r EEMS-example-albers-projection}
+# Transform to Albers equal-area conic projection, choosing lat0 and lat1 appropriate for Africa
+plots$mrates01 + 
+  geom_path(data = map, aes(x = long, y = lat, group = group),
+            color = "#888888", size = 0.5) +
+  coord_map(projection = "albers", lat0 = 0, lat1 = 20)
+```
