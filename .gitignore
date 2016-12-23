@@ -2,6 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-inst/extdata
 inst/doc
 vignettes/*html
