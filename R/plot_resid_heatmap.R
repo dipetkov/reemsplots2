@@ -8,7 +8,6 @@
 #' @param hm_scale A fixed range for the heatmap colors. The default is NULL, so the color space is the observed range of the residuals.
 #' @inheritParams make_eems_plots
 #' @examples
-#' \donttest{
 #' # Use the provided example or supply the path to your own EEMS run
 #' extdata <- system.file("extdata", package = "reemsplots2")
 #' datapath <- file.path(extdata, "EEMS-barrier")
@@ -16,7 +15,6 @@
 #'
 #' plots <- plot_resid_heatmap(datapath, mcmcpath, hm_colors = c("gray99", "red"))
 #' plots
-#' }
 #' @seealso \code{\link{make_eems_plots}}, \code{\link{plot_population_grid}}, \code{\link{plot_voronoi_tiles}}
 #' @export
 

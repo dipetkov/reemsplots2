@@ -22,7 +22,6 @@ Given a set of EEMS output directories, this function generates a heatmap of the
 Applicable only in the case of SNP data when the observed dissimilarity matrix is computed explicitly.
 }
 \examples{
-\donttest{
 # Use the provided example or supply the path to your own EEMS run
 extdata <- system.file("extdata", package = "reemsplots2")
 datapath <- file.path(extdata, "EEMS-barrier")
@@ -30,7 +29,6 @@ mcmcpath <- file.path(extdata, "EEMS-barrier")
 
 plots <- plot_resid_heatmap(datapath, mcmcpath, hm_colors = c("gray99", "red"))
 plots
-}
 }
 \seealso{
 \code{\link{make_eems_plots}}, \code{\link{plot_population_grid}}, \code{\link{plot_voronoi_tiles}}

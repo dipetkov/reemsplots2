@@ -24,7 +24,6 @@ plot_population_grid(mcmcpath, longlat, add_demes = FALSE,
 Given an EEMS output directory, this function generates one figure to visualize the EEMS population grid. All edges are shown in the same color to visualize the grid before estimating the migration and diversity rates. This can be helpful if EEMS throws the error "The population grid is not connected."
 }
 \examples{
-\donttest{
 # Use the provided example or supply the path to your own EEMS run
 mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
 plots <- plot_population_grid(mcmcpath, longlat = TRUE)
@@ -34,7 +33,6 @@ plots
 mcmcpath <- system.file("extdata", "EEMS-popgrid", package = "reemsplots2")
 plots <- plot_population_grid(mcmcpath, longlat = FALSE)
 plots
-}
 }
 \seealso{
 \code{\link{make_eems_plots}}, \code{\link{plot_resid_heatmap}}, \code{\link{plot_voronoi_tiles}}

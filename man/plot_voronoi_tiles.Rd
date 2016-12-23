@@ -26,7 +26,6 @@ plot_voronoi_tiles(mcmcpath, longlat, num_draws = 1, add_seeds = TRUE,
 Given a set of EEMS output directories, this function takes random samples from the posterior distribution of the migration rates m and the diversity rates q. Each draw is visualized as a Voronoi diagram with the help of the \code{deldir} package.
 }
 \examples{
-\donttest{
 # Use the provided example or supply the path to your own EEMS run
 mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
 
@@ -34,7 +33,6 @@ mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
 # the effective migration rates (m) and the effective diversity rates (q).
 plots <- plot_voronoi_tiles(mcmcpath, longlat = TRUE, num_draws = 2)
 plots
-}
 }
 \seealso{
 \code{\link[deldir]{deldir}}, \code{\link{make_eems_plots}}, \code{\link{plot_population_grid}}, \code{\link{plot_resid_heatmap}}
