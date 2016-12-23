@@ -33,6 +33,7 @@
 #' @param prob_level A probability \code{p} to define the posterior probability contours \code{P(log(m) > 0) = p} and \code{P(log(m) < 0) = p}. Defaults to \code{0.9}.
 #' @references Light A and Bartlein PJ (2004). The End of the Rainbow? Color Schemes for Improved Data Graphics. EOS Transactions of the American Geophysical Union, 85(40), 385.
 #' @examples
+#' \donttest{
 #' # Use the provided example or supply the path to your own EEMS run.
 #' mcmcpath <- system.file("extdata", "EEMS-barrier", package = "reemsplots2")
 #'
@@ -40,7 +41,7 @@
 #' # as well as several diagnostic plots
 #' plots <- make_eems_plots(mcmcpath, longlat = TRUE)
 #' names(plots)
-#' \donttest{
+#'
 #' # Save the various plots
 #' library("ggplot2")
 #' plotpath <- file.path(path.expand("~"), "EEMS-barrier")
