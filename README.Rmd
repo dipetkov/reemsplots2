@@ -1,0 +1,76 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Travis-CI Build Status](https://travis-ci.org/dipetkov/reemsplots2.svg?branch=master)](https://travis-ci.org/dipetkov/reemsplots2)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/dipetkov/reemsplots2?branch=master&svg=true)](https://ci.appveyor.com/project/dipetkov/reemsplots2)
+ 
+---
+ 
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.3.2-6666ff.svg)](https://cran.r-project.org/)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/reemsplots2)](https://cran.r-project.org/package=reemsplots2)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master)
+ 
+---
+ 
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r , echo = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", out.width = "75%", 
+                      dpi = 600, fig.path = "README-", fig.retina = NULL,
+                      fig.asp = 1 / 1.6, fig.width = 5)
+```
+
+### reemsplots2: Generate plots to inspect and visualize the results of EEMS
+
+### Installation
+
+```{r , eval = FALSE}
+library("devtools")
+install_github("dipetkov/reemsplots2")
+```
+
+Now, with the function `make_eems_plots`, we can produce a set of several figures to visualize the results of analyzing geo-referenced genetic data with EEMS as well as to evaluate the EEMS model fit.
+
+```{r }
+library("reemsplots2")
+mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
+plots <- make_eems_plots(mcmcpath, longlat = TRUE)
+names(plots)
+```
+
+```{r EEMS-example-default-mrates01}
+plots$mrates01
+```
+
+```{r EEMS-example-default-mrates02}
+plots$mrates02
+```
+
+```{r EEMS-example-default-qrates01}
+plots$qrates01
+```
+
+```{r EEMS-example-default-qrates02}
+plots$qrates02
+```
+
+```{r EEMS-example-default-rdist01, fig.asp = 1}
+plots$rdist01
+```
+
+```{r EEMS-example-default-rdist02, fig.asp = 1}
+plots$rdist02
+```
+
+```{r EEMS-example-default-rdist03, fig.asp = 1}
+plots$rdist03
+```
+
+```{r EEMS-example-default-pilogl01, fig.asp = 1/2, out.width = "75%"}
+plots$pilogl01
+```
