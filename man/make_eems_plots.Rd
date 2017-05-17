@@ -60,7 +60,6 @@ The \code{mrates} and \code{qrates} figures visualize (properties of) the effect
 To describe the within-deme and between-deme components of genetic dissimilarity, let \code{D(a,b)} be the dissimilarity between one individual from deme \code{a} and another individual from deme \code{b}. Then the within-deme component for \code{a} and \code{b} is simply \code{D(a,a)} and \code{D(b, b)}, respectively. The between-deme component is \code{D(a,b) - [D(a,a) + D(b,b)] / 2} and it represents dissimilarity that is due to the spatial structure of the population and is not a consequence of the local diversity in the two demes.
 }
 \examples{
-\donttest{
 # Use the provided example or supply the path to your own EEMS run.
 mcmcpath <- system.file("extdata", "EEMS-barrier", package = "reemsplots2")
 
@@ -68,7 +67,7 @@ mcmcpath <- system.file("extdata", "EEMS-barrier", package = "reemsplots2")
 # as well as several diagnostic plots
 plots <- make_eems_plots(mcmcpath, longlat = TRUE)
 names(plots)
-
+\donttest{
 # Save the various plots
 library("ggplot2")
 plotpath <- file.path(path.expand("~"), "EEMS-barrier")
@@ -96,4 +95,3 @@ Light A and Bartlein PJ (2004). The End of the Rainbow? Color Schemes for Improv
 \seealso{
 \code{\link{plot_population_grid}}, \code{\link{plot_resid_heatmap}}, \code{\link{plot_voronoi_tiles}}
 }
-

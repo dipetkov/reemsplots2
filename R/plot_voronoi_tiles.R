@@ -5,7 +5,6 @@
 #' @param add_seeds A logical value indicating whether to add the Voronoi centers or not.
 #' @inheritParams make_eems_plots
 #' @examples
-#' \donttest{
 #' # Use the provided example or supply the path to your own EEMS run
 #' mcmcpath <- system.file("extdata", "EEMS-example", package = "reemsplots2")
 #'
@@ -13,7 +12,6 @@
 #' # the effective migration rates (m) and the effective diversity rates (q).
 #' plots <- plot_voronoi_tiles(mcmcpath, longlat = TRUE, num_draws = 2)
 #' plots
-#' }
 #' @seealso \code{\link[deldir]{deldir}}, \code{\link{make_eems_plots}}, \code{\link{plot_population_grid}}, \code{\link{plot_resid_heatmap}}
 #' @export
 

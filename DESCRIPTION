@@ -24,11 +24,12 @@ Suggests:
   Matrix,
   RColorBrewer,
   deldir,
+  mapproj,
   rworldmap,
   rworldxtra,
   knitr,
   rmarkdown
 NeedsCompilation: yes
 LinkingTo: Rcpp, RcppEigen
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr

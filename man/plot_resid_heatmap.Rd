@@ -33,4 +33,3 @@ plots
 \seealso{
 \code{\link{make_eems_plots}}, \code{\link{plot_population_grid}}, \code{\link{plot_voronoi_tiles}}
 }
-

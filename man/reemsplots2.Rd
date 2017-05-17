@@ -16,4 +16,3 @@ rates, as well as scatter plots of observed vs fitted genetic dissimilarities.}
 }
 In addition to the help pages, see the README page on \href{https://github.com/dipetkov/eems}{github} for examples.
 }
-

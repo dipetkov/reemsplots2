@@ -37,4 +37,3 @@ plots
 \seealso{
 \code{\link{make_eems_plots}}, \code{\link{plot_resid_heatmap}}, \code{\link{plot_voronoi_tiles}}
 }
-
