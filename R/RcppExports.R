@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 tiles2contours <- function(tiles, rates, seeds, marks, distm) {
-    .Call('reemsplots2_tiles2contours', PACKAGE = 'reemsplots2', tiles, rates, seeds, marks, distm)
+    .Call('_reemsplots2_tiles2contours', PACKAGE = 'reemsplots2', tiles, rates, seeds, marks, distm)
 }
 
